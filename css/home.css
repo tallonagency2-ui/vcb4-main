@@ -1,0 +1,1406 @@
+:root {
+    --page-bg: #010718;
+    --card-bg: #07112d;
+    --card-soft: #151e3d;
+    --nav-bg: rgba(7, 14, 36, 0.96);
+    --lime: #cfff3f;
+    --lime-soft: #ddff73;
+    --white: #ffffff;
+    --muted: #b9bfd0;
+    --app-width: 430px;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+    background: #111111;
+}
+
+body {
+    color: var(--white);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+}
+
+button:active {
+    opacity: 0.84;
+}
+
+.home-app {
+    position: relative;
+    width: min(100%, var(--app-width));
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding:
+        max(38px, env(safe-area-inset-top))
+        0
+        calc(96px + env(safe-area-inset-bottom));
+    overflow: hidden;
+    background:
+        #030b1e;
+}
+
+/*
+ * HỆ THỐNG ẢNH KHÔNG LÀM VỠ LAYOUT
+ * Mọi ảnh icon nằm tuyệt đối trong một khung neo có kích thước cố định.
+ *
+ * Chỉnh riêng:
+ * --img-size: kích thước ảnh
+ * --img-x: âm = trái, dương = phải
+ * --img-y: âm = lên, dương = xuống
+ */
+.ui-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--img-size, 24px);
+    max-width: none;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    transform:
+        translate(
+            calc(-50% + var(--img-x, 0px)),
+            calc(-50% + var(--img-y, 0px))
+        )
+        scale(var(--img-scale, 1));
+}
+
+.ui-img.is-missing,
+.home-banner-img.is-missing {
+    visibility: hidden;
+}
+
+/* =========================
+   THẺ TÀI KHOẢN
+   ========================= */
+.account-card {
+    position: relative;
+    width: calc(100% - 12px);
+    margin: 0 6px;
+    overflow: hidden;
+        margin-top: -22px;
+    border: 1px solid rgba(184, 255, 47, 0.62);
+       border-radius: 39px 35px 21px 36px;
+    background: linear-gradient(145deg, #0a1431, #111b3a);
+    box-shadow: 0 15px 36px rgba(0, 0, 0, 0.2);
+}
+.home-banner-extra-img {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+
+    display: block;
+    width: 100%;
+    height: 26px;
+    margin: 0;
+
+    object-fit: cover;
+    object-position: center;
+
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform: none;
+}
+.visual-stage {
+    position: relative;
+    height: clamp(248px, 65.3vw, 281px);
+    overflow: hidden;
+    border-radius: 37px 37px 0 0;
+    background:
+        radial-gradient(circle at 50% 45%, #fff48b 0 14%, transparent 15%),
+        linear-gradient(145deg, #ffffff 0%, #eaffed 46%, #b7f8d1 100%);
+}
+
+.home-banner-img {
+  position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+
+    object-fit: cover !important;
+    object-position: center !important;
+
+    transform: scale(1.18) !important;
+    transform-origin: center !important;
+}
+
+.hero-control {
+    position: absolute;
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(24, 36, 77, 0.93);
+    box-shadow: 0 5px 15px rgba(4, 12, 36, 0.24);
+}
+
+.hero-power-button {
+    top: 8px;
+    right: 7px;
+}
+
+.hero-face-button {
+    right: 8px;
+    bottom: 11px;
+}
+
+.hero-control-icon {
+    position: absolute;
+    inset: 0;
+}
+
+/* CHỈNH ẢNH NÚT NGUỒN / BIỂU CẢM */
+.home-power-img {
+    --img-size: 38px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.home-face-img {
+    --img-size: 42px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.brand-bar {
+    position: relative;
+    z-index: 2;
+    height: clamp(54px, 14.6vw, 63px);
+    margin-top: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(18px, 5.3vw, 23px);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(117, 153, 125, 0.92),
+            rgba(144, 171, 146, 0.91)
+        );
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+.brand-logo-anchor {
+    position: relative;
+    width: clamp(170px, 48vw, 206px);
+    height: 42px;
+    flex: none;
+}
+
+.home-vcb-logo-img {
+    --img-size: 190px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.brand-actions {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.brand-action-button {
+    position: relative;
+    width: 40px;
+    height: 48px;
+    flex: none;
+}
+
+.brand-action-anchor {
+    position: absolute;
+    inset: 0;
+}
+
+.home-search-img {
+    --img-size: 27px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.home-bell-img {
+    --img-size: 27px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.notification-badge {
+    position: absolute;
+    z-index: 4;
+    top: 5px;
+    right: 0;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(151, 173, 147, 0.95);
+    border-radius: 999px;
+    background: #ef5256;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.account-information {
+    position: relative;
+    min-height: 109px;
+       margin-top: -18px;
+    padding: 10px 13px 8px;
+}
+
+.profile-line {
+    height: 42px;
+    display: flex;
+    align-items: center;
+}
+
+.avatar-anchor {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex: none;
+}
+.avatar-anchor1 {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex: none;
+}
+
+.home-avatar-img {
+    --img-size: 102px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.profile-copy {
+    min-width: 0;
+    margin-left: 4px;
+}
+
+/* .customer-button {
+        min-width: 162px;
+    max-width: calc(100vw - 120px);
+    height: 29px;
+    margin-top: -29px;
+    margin-left: -12px;
+    padding: 0 22px 0 18px;
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: 3px 26px 30px 1px;
+    background: linear-gradient(100deg, #dfff51 0%, #eaff5a 55%, #dcff52 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 2px 5px rgba(0, 0, 0, 0.12);
+    transform: rotate(-2deg);
+    transform-origin: left center;
+} */
+
+.customer-name {
+    display: block;
+    max-width: 172px;
+    /* overflow: hidden; */
+    color: #071020;
+    background: var(--lime-soft);
+    border-radius: 9px;
+    padding: 2px 8px 2px 7px;
+    font-size: clamp(11px, 3.1vw, 13px);
+    /* font-weight: 800; */
+    line-height: 17px;
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+}
+
+.customer-chevron {
+    color: var(--lime);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.customer-rank {
+    height: 19px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #c3c8d6;
+    font-size: clamp(11px, 3vw, 13px);
+    line-height: 1;
+}
+
+.shield-anchor {
+    position: relative;
+    width: 15px;
+    height: 17px;
+    flex: none;
+}
+.shield-anchor1 {
+    
+    font-size: 14px;
+    height: 17px;
+    transform: rotate(-1deg);
+    margin-left: 6px;
+    margin-top: 7px;
+}
+.shield-anchor2 {
+    
+    font-size: 33px;
+    height: 17px;
+    transform: rotate(-1deg);
+    margin-left: 7px;
+    margin-top: -15px;
+    margin-top: -23px;
+}
+.home-shield-img {
+           --img-size: 26px;
+    --img-x: 3px;
+    --img-y: 8px;
+}
+
+/* .qr-account-button {
+    position: relative;
+    width: 63px;
+    height: 34px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+    padding-right: 8px;
+    overflow: hidden;
+    border-radius: 18px 0 0 18px;
+    background: #ffffff;
+    color: #131829;
+    font-size: 14px;
+} */
+
+.qr-account-anchor {
+    position: relative;
+    width: 29px;
+    height: 30px;
+    flex: none;
+}
+
+.home-qr-account-img {
+    --img-size: 150px;
+    --img-x: 140px;
+    --img-y: 25px;
+}
+
+.account-detail-row {
+    min-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: clamp(12px, 3.35vw, 14px);
+}
+
+.detail-label {
+    width: 99px;
+    flex: none;
+    font-size: 15px;
+    color: #ffffff;
+    margin-left: 8px;
+}
+
+.account-number,
+.balance-value {
+    min-width: 0;
+    overflow: hidden;
+    letter-spacing: 2.25px;
+    white-space: nowrap;
+}
+
+.account-number {
+   font-size: 16px;
+      margin-left: -2px;
+}
+
+.balance-value {
+      letter-spacing: 2.6px;
+    font-size: 24px;
+    margin-left: 6px;
+}
+
+.detail-icon-button {
+    position: relative;
+    width: 35px;
+    height: 27px;
+    margin-left: 2px;
+}
+
+.detail-icon-anchor {
+    position: absolute;
+    inset: 0;
+}
+
+.home-copy-img {
+        --img-size: 71px;
+    --img-x: 0px;
+    --img-y: 1px;
+}
+
+.home-eye-img {
+  --img-size: 71px;
+    --img-x: 14px;
+    --img-y: 1px;
+}
+
+.account-shortcuts {
+    height: 43px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: rgba(52, 61, 91, 0.82);
+}
+
+.account-shortcut {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #f1f2f6;
+    font-size: clamp(12px, 3.25vw, 14px);
+    white-space: nowrap;
+}
+
+/* .account-shortcut + .account-shortcut::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.08);
+} */
+
+.shortcut-icon-anchor {
+  font-size: 10px;
+}
+.shortcut-icon-anchor1 {
+        font-size: 16px;
+    margin-left: 55px;
+    color: #ffffff;
+    margin-top: -1px;
+
+}
+.shortcut-icon-anchor2 {
+           font-size: 16px;
+    margin-top: -1px;
+    margin-left: 35px;
+    color: #ffffff;
+
+}
+.home-history-img {
+      --img-size: 64px;
+    --img-x: -46px;
+    --img-y: -2px;
+}
+
+.home-card-img {
+       --img-size: 64px;
+    --img-x: -54px;
+    --img-y: -1px;
+}
+
+/* =========================
+   CHỨC NĂNG ƯA THÍCH
+   ========================= */
+.favorite-section {
+    position: relative;
+    margin: clamp(30px, 8.5vw, 37px) 13px 0;
+}
+
+.section-heading {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-heading h1 {
+    margin: 0;
+    color: #f4f5fa;
+    font-size: clamp(15px, 4vw, 17px);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.customize-button {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--lime);
+    font-size: clamp(13px, 3.6vw, 15px);
+}
+
+.customize-icon-anchor {
+    position: relative;
+    width: 24px;
+    height: 26px;
+}
+
+.home-customize-img {
+    --img-size: 23px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.favorite-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 86px;
+    row-gap: 1px;
+    padding-top: 5px;
+}
+
+.favorite-item {
+    position: relative;
+    min-width: 0;
+    height: 86px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.favorite-icon-anchor {
+    position: relative;
+    width: 56px;
+    height: 51px;
+    flex: none;
+}
+
+.favorite-label {
+    min-height: 34px;
+    color: #eef0f7;
+    font-size: clamp(12px, 3.2vw, 14px);
+    font-weight: 400;
+    line-height: 1.23;
+    text-align: center;
+}
+
+/* CHỈNH TO/NHỎ VÀ VỊ TRÍ RIÊNG TỪNG ẢNH Ở ĐÂY */
+.favorite-digishop-img {
+    --img-size: 46px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.favorite-transfer-img {
+        --img-size: 432px;
+    /* height: 62px; */
+    --img-x: 180px;
+    --img-y: 239px;
+    height: 1129px !important;
+    max-width: none;
+    object-fit: contain;
+}
+
+.favorite-ewallet-img {
+    --img-size: 46px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.favorite-data-img {
+    --img-size: 46px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.favorite-phone-img {
+    --img-size: 46px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.favorite-movie-img {
+    --img-size: 46px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.favorite-badge {
+    position: absolute;
+    z-index: 3;
+    top: 1px;
+    right: -1px;
+    min-width: 24px;
+    height: 18px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    background: #f15855;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.favorite-grid.is-editing .favorite-item {
+    animation: item-wiggle 0.32s ease-in-out infinite alternate;
+}
+
+.favorite-grid.is-editing .favorite-item:nth-child(even) {
+    animation-direction: alternate-reverse;
+}
+
+@keyframes item-wiggle {
+    from {
+        transform: rotate(-0.45deg);
+    }
+    to {
+        transform: rotate(0.45deg);
+    }
+}
+
+.view-all-button {
+    height: 32px;
+    margin: 3px 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #eff1f8;
+    font-size: 14px;
+}
+
+.view-all-icon-anchor {
+    position: relative;
+    width: 25px;
+    height: 27px;
+}
+
+.home-arrow-right-img {
+    --img-size: 23px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+/* =========================
+   NÚT NỔI
+   ========================= */
+.side-tab-button {
+    position: fixed;
+    z-index: 20;
+    top: 74.5%;
+    left: calc(50% + min(50vw, 215px) - 24px);
+    width: 39px;
+    height: 42px;
+    overflow: hidden;
+    border-radius: 18px 0 0 18px;
+    background: var(--lime);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.side-tab-icon-anchor {
+    position: absolute;
+    inset: 0;
+}
+
+.home-side-arrow-img {
+    --img-size: 21px;
+    --img-x: -2px;
+    --img-y: 0px;
+}
+
+.chatbot-button {
+    position: fixed;
+    z-index: 31;
+    right: max(calc((100vw - var(--app-width)) / 2 + 15px), 15px);
+    bottom: calc(45px + env(safe-area-inset-bottom));
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #101837;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.chatbot-icon-anchor {
+    position: absolute;
+    inset: 0;
+}
+
+.home-chatbot-img {
+    --img-size: 61px;
+    --img-x: 0px;
+    --img-y: -1px;
+}
+
+/* =========================
+   THANH ĐIỀU HƯỚNG
+   ========================= */
+.bottom-navigation {
+    position: fixed;
+    z-index: 30;
+    left: 50%;
+    bottom: 0;
+    width: min(100%, var(--app-width));
+    height: calc(77px + env(safe-area-inset-bottom));
+    padding: 0 24px env(safe-area-inset-bottom);
+    display: grid;
+    grid-template-columns: 1fr 1.45fr 1fr;
+    align-items: start;
+    border-radius: 29px 29px 0 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(16, 24, 55, 0.98),
+            rgba(6, 13, 34, 0.99)
+        );
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.19);
+    transform: translateX(-50%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.nav-item {
+    position: relative;
+    min-width: 0;
+    height: 72px;
+    padding-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #d2d6e1;
+    font-size: clamp(11px, 3.1vw, 13px);
+    white-space: nowrap;
+}
+
+.nav-icon-anchor {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    width: 37px;
+    height: 33px;
+    transform: translateX(-50%);
+}
+
+.nav-products-img {
+    --img-size: 28px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.nav-settings-img {
+    --img-size: 30px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.nav-item-main {
+    height: 76px;
+    padding-top: 55px;
+    color: rgba(225, 228, 237, 0.36);
+}
+
+.nav-main-icon-anchor {
+    position: absolute;
+    z-index: 2;
+    top: -12px;
+    left: 50%;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 9px 20px rgba(176, 255, 30, 0.18);
+    transform: translateX(-50%);
+}
+
+.nav-qr-img {
+    --img-size: 35px;
+    --img-x: 0px;
+    --img-y: 0px;
+}
+
+.nav-main-label {
+    position: absolute;
+    top: 58px;
+    left: 50%;
+    width: 190px;
+    text-align: center;
+    transform: translateX(-50%);
+}
+
+.nav-item.is-active {
+    color: #fff;
+}
+
+/* =========================
+   TOAST
+   ========================= */
+.demo-toast {
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    bottom: calc(97px + env(safe-area-inset-bottom));
+    max-width: min(86vw, 360px);
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: rgba(16, 23, 46, 0.95);
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.25;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.demo-toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 360px) {
+    .home-app {
+        padding-top: max(30px, env(safe-area-inset-top));
+    }
+
+    .account-card {
+        width: calc(100% - 10px);
+        margin: 0 5px;
+        border-radius: 32px;
+    }
+
+    .visual-stage {
+        height: 230px;
+        border-radius: 31px 31px 0 0;
+    }
+
+    .brand-logo-anchor {
+        width: 160px;
+    }
+
+    .home-vcb-logo-img {
+        --img-size: 165px;
+    }
+
+    .account-information {
+        padding-inline: 10px;
+    }
+
+    .detail-label {
+        width: 80px;
+    }
+
+    .favorite-section {
+        margin-inline: 10px;
+    }
+
+    .favorite-grid {
+        grid-auto-rows: 82px;
+    }
+
+    .favorite-item {
+        height: 82px;
+    }
+
+    .bottom-navigation {
+        padding-inline: 13px;
+    }
+}
+
+@media (min-width: 431px) {
+    .side-tab-button {
+        left: calc(50% + 191px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* Không cắt ảnh khi phóng lớn */
+.favorite-item,
+.favorite-icon-anchor,
+.favorite-icon-box {
+    overflow: visible !important;
+}
+
+/* Chỉnh riêng ảnh Chuyển tiền */
+.favorite-transfer-img {
+       width: 443px !important;
+    height: 938px !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: fill !important;
+    --img-x: 179px;
+    --img-y: 228px;
+    z-index: 10;
+}
+/* Cụm avatar + tên + hạng */
+.profile-line {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    min-height: 65px;
+    margin-top: 25px;
+    overflow: visible !important;
+}
+
+/* Khung cố định của avatar */
+.avatar-anchor {
+    position: relative;
+    z-index: 5;
+
+    flex: 0 0 72px;
+    width: 72px;
+    height: 72px;
+
+    display: block;
+    overflow: visible !important;
+}
+
+/* Ảnh avatar */
+.home-avatar-img {
+   --img-size: 253px;
+    --img-x: -14px;
+        --img-y: 14px;
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    width: var(--img-size) !important;
+    height: var(--img-size) !important;
+    max-width: none !important;
+    object-fit: contain;
+    transform: translate(calc(-50% + var(--img-x)), calc(-50% + var(--img-y)));
+}
+
+/* Kéo phần tên vào sau avatar */
+.profile-copy {
+    position: relative;
+    z-index: 2;
+
+    min-width: 0;
+    margin-left: -13px;
+    margin-top: 2px;
+}
+
+/* Thanh xanh chứa tên */
+.customer-button {
+    position: relative;
+    z-index: 1;
+    min-width: 181px;
+    width: 10px;
+    height: 29px;
+    margin-left: -27px;
+    margin-top: 5px;
+    /* padding: 0 22px 0 27px; */
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: 5px 24px 24px 5px;
+    background: linear-gradient(180deg, #efff86 0%, #ebfb7f 30%, #d5f85f 60%, #ebfb7f 100%) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), 0 1px 3px rgba(0, 0, 0, 0.12);
+    transform: rotate(-1deg);
+    transform-origin: left center;
+}
+
+/* Chữ nghiêng nhẹ */
+.customer-name {
+       color: #080808;
+    font-size: 17px;
+    /* font-weight: 750; */
+    margin-left: 13px;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    transform: skewX(-1deg);
+}
+
+/* Hạng khách hàng */
+.customer-rank-button {
+    margin-top: 4px;
+    margin-left: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 16px;
+    white-space: nowrap;
+}
+/* Tách phần số tiền và chữ VND khi đang hiển thị */
+.account-detail-row:has(
+    .balance-toggle-button[aria-pressed="true"]
+) .balance-value {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px;
+
+    color: transparent !important;
+    font-size: 0 !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap;
+}
+
+/* Số tiền */
+.account-detail-row:has(
+    .balance-toggle-button[aria-pressed="true"]
+) .balance-value::before {
+   content: attr(data-amount);
+    color: #ffffff;
+    font-size: 18px;
+    /* font-weight: 800; */
+    line-height: 1;
+    letter-spacing: 2.6px;
+}
+
+/* Chữ VND */
+.account-detail-row:has(
+    .balance-toggle-button[aria-pressed="true"]
+) .balance-value::after {
+    content: "VND";
+
+    color: #9ca4b5;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+
+    transform: translateY(1px);
+}
+/* Khóa hàng số dư, không cho dịch chuyển khi bấm mắt */
+.balance-row {
+    width: 100%;
+    height: 35px;
+
+    display: grid !important;
+    grid-template-columns: 92px minmax(0, 1fr) 30px;
+    align-items: center;
+    column-gap: 6px;
+
+    overflow: hidden;
+}
+
+/* Khóa vị trí vùng hiển thị số dư */
+.balance-row .balance-value {
+       position: relative;
+    width: 100%;
+    min-width: 0;
+    height: 30px;
+    margin: 0;
+    margin-left: 8px;
+    display: flex !important;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Khóa vị trí nút mắt */
+.balance-row .balance-toggle-button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+    background: transparent;
+}
+
+/* Khi hiện số dư */
+/* .balance-row:has(
+    .balance-toggle-button[aria-pressed="true"]
+) .balance-value {
+    color: transparent !important;
+    font-size: 0 !important;
+    letter-spacing: 0 !important;
+} */
+
+/* Phần số tiền */
+.balance-row:has(
+    .balance-toggle-button[aria-pressed="true"]
+) .balance-value::before {
+     content: attr(data-amount);
+    color: #ffffff;
+    font-size: 20px;
+    /* font-weight: 800; */
+    line-height: 30px;
+    /* margin-left: 14px; */
+    margin-top: -5px;
+    letter-spacing: 2px;
+}
+
+/* Chữ VND */
+.balance-row:has(
+    .balance-toggle-button[aria-pressed="true"]
+) .balance-value::after {
+    content: "VND";
+
+    margin-left: 6px;
+
+    color: #9ca4b5;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+
+    transform: translateY(-2px);
+}
+/* Hàng số dư làm mốc định vị */
+.account-detail-row {
+    position: relative;
+}
+
+/* Di chuyển cả nút, không chỉ di chuyển ảnh */
+.balance-toggle-button {
+    position: absolute !important;
+    z-index: 100 !important;
+
+    top: 50%;
+    right: 18px;
+
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+
+    display: grid !important;
+    place-items: center;
+
+    border: 0;
+    background: transparent;
+
+    transform: translateY(-50%);
+    cursor: pointer;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+}
+
+/* Ảnh mắt luôn nằm giữa vùng bấm */
+.balance-toggle-button .detail-icon-anchor {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    pointer-events: none;
+}
+
+.balance-toggle-button .home-eye-img {
+    position: static !important;
+    width: 120px !important;
+    height: 160px !important;
+    max-width: none !important;
+    object-fit: contain;
+    margin-left: -70px;
+    margin-top: -56px;
+    transform: none !important;
+    pointer-events: none !important;
+}
+
+.visual-stage {
+    height: 310px !important; /* tăng khung để ảnh có chỗ đi xuống */
+    overflow: hidden !important;
+}
+
+.home-banner-img {
+        position: absolute !important;
+    top: 2px !important;
+    left: 49% !important;
+    width: 85% !important;
+    height: 132% !important;
+    margin: 0 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transform: translate(-50%, 35px) scale(1.18) !important;
+    transform-origin: center !important;
+}
+/* Ảnh phía trên lớn hơn và đè xuống dưới */
+.visual-stage {
+    position: relative;
+    height: 305px !important;
+    overflow: hidden !important;
+    z-index: 2;
+    margin-bottom: -35px !important;
+}
+
+.home-banner-img {
+        position: absolute !important;
+    inset: 0 !important;
+    width: 91% !important;
+    height: 158% !important;
+    left: 10px;
+    margin: -8px 15px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transform: scale(1.12) translateY(15px) !important;
+    transform-origin: center;
+}
+
+/* Thu gọn phần thông tin bên dưới */
+.account-information {
+    min-height: 0 !important;
+    margin-top: 0 !important;
+    padding: 8px 13px 5px !important;
+}
+
+/* Thu gọn hai hàng số tài khoản và số dư */
+.account-detail-row {
+    min-height: 27px !important;
+    padding: 1px 0 !important;
+}
+
+/* Thu gọn thanh Lịch sử giao dịch */
+.account-shortcuts {
+    min-height: 40px !important;
+    height: 40px !important;
+}
+/* SỬA DỨT ĐIỂM PHẦN BANNER */
+.visual-stage {
+    position: relative !important;
+    height: clamp(304px, 80vw, 381px) !important;
+    overflow: hidden !important;
+}
+
+/* Ảnh chính lớn, phủ kín khung và không lộ thanh màu */
+.home-banner-img {
+        position: absolute !important;
+    top: -17px !important;
+    left: 0 !important;
+    width: 98% !important;
+    height: 493px !important;
+    margin: 0 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transform: translateY(20px) scale(1.05) !important;
+}
+
+/* Ảnh phụ chỉ phủ lên banner, không chiếm thêm 55px */
+.home-banner-extra-img {
+       position: absolute !important;
+    left: 16px !important;
+    bottom: -191px !important;
+    top: auto !important;
+    right: auto !important;
+    width: 190px !important;
+    height: auto !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    z-index: 3 !important;
+}
+
+/* Kéo phần thông tin sát ngay dưới banner */
+.account-information {
+    margin-top: 0 !important;
+    min-height: 0 !important;
+    padding-top: 7px !important;
+}
+/* CHỈ SỬA THANH LỊCH SỬ GIAO DỊCH */
+.account-shortcuts {
+        width: 109%;
+    margin-left: -21px;
+    height: 44px !important;
+    min-height: 55px !important;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background: rgba(52, 59, 82, 0.96);
+    border-radius: 0 0 28px 28px;
+    overflow: hidden;
+}
+
+/* Giữ hai nội dung cân đúng như mẫu */
+.account-shortcut {
+   height: 37px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+/* Chữ bên trái */
+.shortcut-icon-anchor1 {
+    margin-left: 37px;
+    margin-top: 0;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+/* Chữ bên phải */
+.shortcut-icon-anchor2 {
+       margin-left: 7px;
+    margin-top: 0;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+/* Canh lại riêng hai icon */
+.home-history-img {
+       --img-size: 64px;
+    --img-x: -56px;
+    --img-y: -2px;
+}
+
+.home-card-img {
+     --img-size: 64px;
+    --img-x: -65px;
+    --img-y: -1px;
+}
+
+/* Chỉ chỉnh hai góc đáy của đúng thẻ này */
+.account-card {
+    border-bottom-right-radius: 56px !important;
+    border-bottom-left-radius: 28px !important;
+}
+.account-shortcuts {
+       width: calc(108% + 2px) !important;
+    height: 55px !important;
+    min-height: 55px !important;
+    margin: -6px -10px -19px -16px !important;
+    padding: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    background: rgba(52, 59, 82, 0.96) !important;
+    border-radius: 0 0 34px 34px !important;
+    overflow: hidden;
+}

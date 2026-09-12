@@ -1,0 +1,1108 @@
+:root {
+    --neon: #cfff52;
+    --lime-left: #aefab8;
+    --lime-right: #e8ff62;
+    --white: #fff;
+    --panel: rgba(39, 43, 61, .94);
+    --navy: #02071b;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    background: #000512;
+    color: var(--white);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+}
+
+.app-shell {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 480px);
+    min-height: 100svh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--navy);
+}
+
+.login-background,
+.background-shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.login-background {
+    z-index: -3;
+    object-fit: cover;
+    object-position: center center;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* .background-shade {
+    z-index: -2;
+    background:
+        linear-gradient(180deg, rgba(0, 4, 24, .40) 0%, rgba(0, 5, 23, .02) 25%, rgba(0, 4, 23, .12) 55%, rgba(0, 4, 22, .72) 82%, #010718 100%),
+        linear-gradient(90deg, rgba(0, 7, 30, .18), transparent 48%, rgba(0, 6, 28, .14));
+    pointer-events: none;
+} */
+
+.login-header {
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    min-height: 56px;
+    padding:
+        max(14px, env(safe-area-inset-top))
+        20px
+        0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    box-sizing: border-box;
+}
+/* Logo bên trái */
+.login-header-logo {
+    width: 158px; /* Chỉnh logo lớn/nhỏ tại đây */
+    height: auto;
+    max-width: 58vw;
+
+    display: block;
+    object-fit: contain;
+    object-position: left center;
+    flex-shrink: 0;
+}
+.vcb-logo-img {
+      position: absolute;
+    width: 160px;
+    height: auto;
+    margin-left: 2px;
+    margin-top: 85px;
+    display: block;
+}
+
+.language-button {
+    min-height: 43px;
+    position: absolute;
+    padding: 7px 0px 7px 0px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 88px;
+      margin-left: 304px;
+    margin-top: 76px;
+    border-radius: 999px;
+    background: rgba(0, 5, 25, .84);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .16);
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 0;
+    outline: none;
+    /* background: transparent; */
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    
+}
+.language-button span {
+      margin-left: 22px;
+    margin-top: 3px;
+    
+}
+/* Ảnh ENG bên phải */
+.login-language-img {
+    width: 58px; /* Chỉnh ảnh ENG lớn/nhỏ tại đây */
+    height: auto;
+    max-width: 22vw;
+
+    display: block;
+    object-fit: contain;
+}
+
+/* Điện thoại màn hình nhỏ */
+@media (max-width: 360px) {
+    .login-header {
+        padding-left: 16px;
+        padding-right: 16px;
+        gap: 10px;
+    }
+
+    .login-header-logo {
+        width: 140px;
+    }
+
+    .login-language-img {
+        width: 52px;
+    }
+}
+.language-flag-img {
+   width: 75px;
+    height: 160px;
+    margin-top: -2px;
+    margin-left: -47px;
+    position: absolute;
+    border-radius: 50%;
+    display: block;
+}
+
+.login-content {
+         top: 535px;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: max(296px, 27.4dvh);
+    width: 100%;
+    padding: 0 clamp(21px, 5.5vw, 28px);
+}
+
+.customer-row {
+         position: absolute;
+    margin-bottom: 16px;
+    display: flex;
+    margin-top: -58px;
+    align-items: center;
+    gap: 13px;
+    margin-left: 52px;
+}
+
+.customer-avatar-img {
+         width: clamp(100px, 12.5vw, 62px);
+    aspect-ratio: 1;
+        margin-left: -72px;
+    position: absolute;
+    flex: none;
+    display: block;
+    margin-top: -3px;
+    /* border: 2px solid rgba(255, 255, 255, .85); */
+    border-radius: 50%;
+    object-fit: cover;
+  
+}
+
+.welcome-text,
+.customer-name {
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .28);
+}
+
+.welcome-text {
+    font-size: clamp(16px, 4.1vw, 20px);
+    line-height: 1.22;
+}
+
+.customer-name {
+    margin-top: 2px;
+    font-size: clamp(14px, 4.4vw, 15px);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.login-form {
+    margin: 0;
+}
+
+.password-field {
+    height: clamp(50px, 13vw, 50px);
+    display: grid;
+    grid-template-columns: 47px minmax(0, 1fr) 48px;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .32);
+    border-radius: 18px;
+    background: rgba(16, 51, 119, .48);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+.password-field:focus-within {
+    border-color: rgba(207, 255, 82, .78);
+    box-shadow: 0 0 0 2px rgba(207, 255, 82, .12);
+}
+
+.password-lock-img {
+      width: 69px;
+    height: 150px;
+    margin: auto;
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -6px;
+}
+
+.password-input {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    position: absolute;
+    margin-left: 62px;
+    padding: 0 6px 0 0;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    background: transparent;
+    caret-color: var(--neon);
+      font-size: clamp(14px, 4.5vw, 19px);
+}
+
+.password-input::placeholder {
+    color: rgba(255, 255, 255, .48);
+}
+
+.password-toggle {
+       width: 60px;
+    align-self: stretch;
+    display: grid;
+    place-items: center;
+    position: relative;
+   margin-left: 335px;
+    background: rgba(3, 18, 57, .28);
+}
+
+.password-eye-img {
+        width: 66px;
+    height: 128px;
+    display: block;
+    margin-left: -18px;
+    margin-top: -45px;
+}
+
+.login-action-row {
+     margin-top: 13px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 52px;
+    gap: 10px;
+}
+
+.login-button {
+        height: clamp(43px, 12.6vw, 40px);
+    border-radius: 18px;
+    margin-top: 0px;
+    color: #091108;
+    background: linear-gradient(100deg, var(--lime-left), var(--lime-right));
+    box-shadow: 0 10px 24px rgba(35, 255, 157, .08);
+    font-size: clamp(11px, 4.35vw, 18px);
+    font-weight: 550;
+    transition: transform .18s ease, filter .18s ease, opacity .18s ease;
+}
+
+.login-button:active:not(:disabled) {
+    transform: scale(.985);
+}
+
+/* .login-button:disabled {
+    opacity: .56;
+    filter: saturate(.55);
+    cursor: default;
+} */
+
+.face-id-button {
+    width: 52px;
+    height: 52px;
+    margin: auto 0;
+    display: grid;
+    place-items: center;
+    border: 4px solid rgba(255, 255, 255, .13);
+    border-radius: 50%;
+    background: rgba(70, 77, 100, .93);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, .20);
+}
+
+.face-id-img {
+     width: 124px;
+    height: 268px;
+    margin-left: -47px;
+    margin-top: -115px;
+    display: block;
+}
+/* Khung chứa 5 chức năng */
+.service-menu {
+       position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 10px 8px 18px;
+    box-sizing: border-box;
+    display: grid;
+    margin-top: 748px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: start;
+    background: transparent;
+}
+
+/* Khung chứa hai tiện ích */
+.top-quick-tools {
+   position: absolute;
+    z-index: 20;
+    top: 720px;
+    left: 0;
+    width: 100%;
+    height: 142px;
+    pointer-events: none;
+}
+
+/* Nút chung */
+.quick-tool {
+    position: absolute;
+    top: 0;
+
+    width: 130px;
+    height: 125px;
+
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+
+    color: #ffffff;
+    font: inherit;
+
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Vị trí riêng của QR nhận tiền */
+.quick-tool-money {
+    left: 25%;
+
+    transform: translateX(
+        calc(-50% + var(--item-x, 0px))
+    );
+
+    --item-x: 0px;
+    --item-y: 0px;
+}
+
+/* Vị trí riêng của Thông báo */
+.quick-tool-notification {
+    left: 75%;
+
+    transform: translateX(
+        calc(-50% + var(--item-x, 0px))
+    );
+
+    --item-x: 0px;
+    --item-y: 0px;
+}
+
+/* Khung ảnh cố định */
+.quick-tool-icon-box {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 72px;
+    height: 72px;
+
+    transform: translateX(-50%);
+    overflow: visible;
+}
+
+/* Cài đặt chung cho hai ảnh */
+.quick-tool-img {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    max-width: none;
+    height: auto;
+
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+
+    transform: translate(
+        calc(-50% + var(--img-x, 0px)),
+        calc(-50% + var(--img-y, 0px))
+    );
+}
+
+/* =========================================
+   ẢNH QR NHẬN TIỀN – CHỈNH RIÊNG TẠI ĐÂY
+   ========================================= */
+.quick-money-img {
+        width: 100px;
+    --img-x: -16px;
+    --img-y: 21px;
+}
+
+/* =========================================
+   ẢNH THÔNG BÁO – CHỈNH RIÊNG TẠI ĐÂY
+   ========================================= */
+.quick-notification-img {
+       width: 148px;
+    --img-x: 4px;
+    --img-y: 63px;
+}
+
+/* Chữ chung */
+.quick-tool-text {
+    position: absolute;
+
+    top: 82px;
+    left: 50%;
+
+    width: 150px;
+
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+
+    transform: translate(
+        calc(-50% + var(--text-x, 0px)),
+        var(--text-y, 0px)
+    );
+}
+
+/* Chữ QR nhận tiền – chỉnh riêng */
+.quick-money-text {
+         font-size: 15px;
+    --text-x: -16px;
+    --text-y: 2px;
+
+}
+.quick-money-text1 {
+      font-size: 15px;
+    --text-x: -1px;
+    --text-y: 2px;
+
+}
+/* Chữ Thông báo – chỉnh riêng */
+.quick-notification-text {
+       font-size: 15px;
+    --text-x: 12px;
+    --text-y: 2px;
+}
+
+/* Số thông báo */
+
+/* Từng chức năng */
+.service-item {
+    position: relative;
+    min-width: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #ffffff;
+
+    font: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* Khung ảnh cố định — ảnh thay đổi không đẩy chữ */
+.service-icon-box {
+    position: relative;
+
+    width: 100%;
+    height: 58px;
+
+    display: block;
+    overflow: visible;
+}
+
+
+/* Cài đặt chung cho 5 ảnh */
+.service-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    height: auto;
+    max-width: none;
+
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+
+    transform: translate(
+        calc(-50% + var(--img-x, 0px)),
+        calc(-50% + var(--img-y, 0px))
+    );
+
+    will-change: transform;
+}
+
+
+/* ==================================================
+   CHỈNH RIÊNG TỪNG ẢNH TẠI ĐÂY
+   width  = chỉnh to/nhỏ
+   --img-x = qua trái/phải
+   --img-y = lên/xuống
+   ================================================== */
+
+
+/* 1. ATM / Chi nhánh */
+.service-atm-img {
+   width: 100px;
+    --img-x: -1px;
+    --img-y: 7px;
+}
+
+
+/* 2. Ưu đãi */
+.service-offer-img {
+   width: 82px;
+    --img-x: 3px;
+    --img-y: 8px;
+}
+
+
+/* 3. Hướng dẫn sử dụng */
+.service-guide-img {
+    width: 83px;
+    --img-x: 4px;
+    --img-y: 0px;
+}
+
+
+/* 4. Tạo OTP */
+.service-otp-img {
+     width: 108px;
+    --img-x: 3px;
+    --img-y: -5px;
+}
+
+
+/* 5. Hỗ trợ */
+.service-support-img {
+    width: 100px;
+    --img-x: 0px;
+    --img-y: 14px;
+}
+
+
+/* Phần chữ */
+.service-label {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    min-height: 44px;
+    padding: 0 2px;
+    box-sizing: border-box;
+
+    color: #ffffff;
+        font-size: clamp(12px, 3.3vw, 15px);
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* Điện thoại nhỏ */
+@media (max-width: 360px) {
+    .service-menu {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .service-icon-box {
+        height: 52px;
+    }
+
+    .service-label {
+        font-size: 11px;
+    }
+}
+.forgot-button {
+        margin-top: 18px;
+    /* padding: 8px 0; */
+    background: transparent;
+    font-size: clamp(14px, 4vw, 15px);
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.quick-panel {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 107px;
+    width: 100%;
+    height: 138px;
+    padding: 5px 28px 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+.quick-item {
+    position: relative;
+    height: 116px;
+    padding: 0 2px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    background: transparent;
+    font-size: clamp(14px, 3.8vw, 18px);
+    white-space: nowrap;
+}
+
+.quick-icon-shell {
+    position: relative;
+    width: 51px;
+    height: 51px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #393e50;
+}
+
+.quick-item-main {
+    z-index: 1;
+}
+
+.quick-icon-main {
+    position: absolute;
+    top: -24px;
+    width: 76px;
+    height: 76px;
+    border: 8px solid rgba(203, 255, 131, .22);
+    background: linear-gradient(100deg, #b4ffb5, #e7ff59);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .23);
+}
+
+.qr-money-img,
+.notification-img {
+    width: 29px;
+    height: 29px;
+}
+
+.scan-qr-img {
+    width: 37px;
+    height: 37px;
+}
+
+/* .notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -3px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: #ff3f4b;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+} */
+
+.utility-panel {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 108px;
+    padding: 13px 8px max(8px, env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: #010719;
+}
+
+.utility-item {
+    min-width: 0;
+    padding: 0 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    color: #fff;
+    font-size: clamp(11px, 3.05vw, 14px);
+    line-height: 1.22;
+    text-align: center;
+}
+
+.utility-item img {
+    width: 25px;
+    height: 25px;
+    display: block;
+}
+
+.utility-icon-wrap {
+    position: relative;
+}
+
+.offer-dot {
+    position: absolute;
+    top: -5px;
+    right: -6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff444c;
+}
+
+.demo-toast {
+    position: fixed;
+    z-index: 20;
+    left: 50%;
+    bottom: 265px;
+    width: min(calc(100% - 40px), 390px);
+    padding: 11px 14px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 12px;
+    background: rgba(4, 10, 28, .92);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .28);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 8px);
+    transition: opacity .2s ease, transform .2s ease;
+    text-align: center;
+    font-size: 13px;
+}
+
+.demo-toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-height: 720px) {
+    .login-header {
+        top: max(16px, env(safe-area-inset-top));
+    }
+
+    .vcb-logo-img {
+        width: 174px;
+    }
+
+    .login-content {
+        bottom: 253px;
+    }
+
+    .customer-row {
+        margin-bottom: 10px;
+    }
+
+    .forgot-button {
+        margin-top: 8px;
+    }
+
+    .quick-panel {
+        bottom: 92px;
+        height: 126px;
+    }
+
+    .utility-panel {
+        height: 93px;
+        padding-top: 10px;
+    }
+}
+
+@media (min-width: 481px) {
+    body {
+        background: #070b16;
+    }
+
+    .app-shell {
+        box-shadow: 0 0 60px rgba(0, 0, 0, .55);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+/* Bảo đảm phần tử hidden được ẩn */
+[hidden] {
+    display: none !important;
+}
+
+/* Ô mật khẩu mô phỏng */
+.password-field {
+    position: relative;
+    width: 100%;
+    height: 54px;
+
+    display: block;
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 18px;
+    outline: none;
+
+    background: rgba(16, 51, 119, 0.48);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+
+    cursor: pointer;
+    touch-action: manipulation;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Đổi màu sau lần chạm đầu tiên */
+.password-field.is-active {
+    border-color: #cfff52;
+    background: rgba(20, 48, 53, 0.92);
+
+    box-shadow:
+        0 0 0 1px rgba(207, 255, 82, 0.8),
+        0 0 13px rgba(207, 255, 82, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Icon ổ khóa */
+.password-lock-img {
+    position: absolute;
+    z-index: 2;
+    top: 46%;
+    left: 0px;
+    width: 63px;
+    height: 150px;
+    margin: 0;
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+/* Chữ Mật khẩu */
+.password-placeholder {
+    position: absolute;
+    z-index: 2;
+
+    top: 50%;
+    left: 62px;
+
+    color: rgba(255, 255, 255, 0.5);
+    font-size: clamp(14px, 4.5vw, 19px);
+    line-height: 1;
+
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+/* Khung chứa 9 dấu chấm */
+.password-dots {
+    position: absolute;
+    z-index: 3;
+
+    top: 50%;
+    left: 65px;
+    right: 112px;
+
+    min-height: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+/* Từng dấu chấm mật khẩu */
+.password-dot {
+    flex: 0 0 auto;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+    background: #ffffff;
+
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.45);
+
+    animation: passwordDotIn 0.15s ease;
+}
+
+@keyframes passwordDotIn {
+    from {
+        opacity: 0;
+        transform: scale(0.35);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Nút xóa mật khẩu */
+.password-clear {
+    position: absolute;
+    z-index: 5;
+
+    top: 50%;
+    right: 58px;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+    outline: 0;
+    border-radius: 50%;
+    background: transparent;
+
+    cursor: pointer;
+    transform: translateY(-50%);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ảnh dấu X — chỉnh riêng tại đây */
+.password-clear-img {
+     width: 86px;
+    height: 151px;
+    margin-top: -55px;
+    margin-left: -14px;
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+
+    transform: translate(
+        var(--clear-img-x, 0px),
+        var(--clear-img-y, 0px)
+    );
+}
+/* Nút con mắt */
+/* .password-toggle {
+    position: absolute;
+    z-index: 5;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 54px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+
+    border: 0;
+    background: transparent;
+}
+
+/* Ảnh con mắt */
+/* .password-eye-img {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 66px;
+    height: 128px;
+    margin: 0;
+
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+} */ 
+
+/* Nút đăng nhập khi chưa đủ 9 lần */
+/* .login-button:disabled {
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(77, 89, 91, 0.75);
+    box-shadow: none;
+    cursor: default;
+} */
+
+/* Nút đăng nhập khi đã đủ 9 lần */
+.login-button:not(:disabled) {
+    color: #091108;
+    background: linear-gradient(
+        100deg,
+        var(--lime-left),
+        var(--lime-right)
+    );
+
+    box-shadow: 0 8px 24px rgba(207, 255, 82, 0.2);
+}
+
+/* Màn hình nhỏ */
+@media (max-width: 360px) {
+    .password-dots {
+        left: 58px;
+        right: 105px;
+        gap: 7px;
+    }
+
+    .password-dot {
+        width: 8px;
+        height: 8px;
+    }
+}

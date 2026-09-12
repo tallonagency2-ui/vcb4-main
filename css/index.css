@@ -1,0 +1,204 @@
+:root {
+    --vcb-green: #72bf44;
+    --vcb-black: #050505;
+    --page-background: #f7fbfa;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background: var(--page-background);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.splash-screen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.splash-background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--page-background);
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)),
+        url("../img/vcb-splash-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transform: scale(1.025);
+    animation: background-enter 1.8s cubic-bezier(.2, .7, .2, 1) forwards;
+}
+
+.splash-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(90vw, 430px);
+    text-align: center;
+    transform: translate(-50%, -50%);
+    animation: content-enter 900ms cubic-bezier(.2, .8, .2, 1) 100ms both;
+}
+
+.vcb-brand {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    white-space: nowrap;
+    font-size: clamp(42px, 12vw, 62px);
+    line-height: 1;
+    letter-spacing: -3.6px;
+    font-weight: 730;
+}
+
+.vcb-brand-green {
+    color: var(--vcb-green);
+}
+
+.vcb-brand-black {
+    color: var(--vcb-black);
+}
+
+.splash-welcome {
+    margin-top: 17px;
+    color: #0a0a0a;
+    font-size: clamp(19px, 5.4vw, 27px);
+    line-height: 1.25;
+    font-weight: 400;
+    letter-spacing: -0.55px;
+}
+.splash-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    padding: 0 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Chỉnh kích thước logo tại đây */
+.splash-logo {
+ width: 200px;
+    height: auto;
+    max-width: 80vw;
+       margin-left: 5%;
+    margin-top: 21px;
+    display: block;
+    object-fit: contain;
+}
+
+/* Lời chào */
+.splash-welcome {
+    margin: 20px 0 0;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+@keyframes content-enter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% + 14px)) scale(.975);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes background-enter {
+    from {
+        opacity: .72;
+        transform: scale(1.06);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.025);
+    }
+}
+
+@media (max-width: 359px) {
+    .vcb-brand {
+        font-size: 39px;
+        letter-spacing: -3px;
+    }
+
+    .splash-welcome {
+        margin-top: 14px;
+        font-size: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-background,
+    .splash-content {
+        animation: none;
+    }
+}
+/* Hiệu ứng thoát khỏi splash */
+.splash-screen {
+    opacity: 1;
+    transform: scale(1);
+    transition:
+        opacity 450ms cubic-bezier(.4, 0, .2, 1),
+        transform 450ms cubic-bezier(.4, 0, .2, 1);
+    will-change: opacity, transform;
+}
+
+/* Bắt đầu mờ và phóng nhẹ trước khi chuyển trang */
+.splash-screen.is-leaving {
+    opacity: 0;
+    transform: scale(1.025);
+    pointer-events: none;
+}
+
+/* Logo mờ mượt hơn */
+.splash-logo {
+    transition:
+        opacity 400ms ease,
+        transform 450ms cubic-bezier(.4, 0, .2, 1);
+    will-change: opacity, transform;
+}
+
+.splash-screen.is-leaving .splash-logo {
+    opacity: 0;
+    transform: scale(.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-screen,
+    .splash-logo {
+        transition: none;
+    }
+}

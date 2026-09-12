@@ -1,0 +1,877 @@
+:root {
+    --history-bg: #00091b;
+    --history-panel: #172738;
+    --history-lime: #c9ff38;
+    --history-green: #79d96f;
+    --history-red: #ff5148;
+    --history-white: #f8f8fb;
+    --history-muted: #9299a7;
+    --history-line: rgba(129, 142, 163, 0.32);
+    --history-width: 430px;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+    background: #d7e9ea;
+}
+
+body {
+    color: var(--history-white);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+    color: inherit;
+    font: inherit;
+}
+
+button {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+button:active {
+    opacity: 0.82;
+}
+
+.history-app {
+    position: relative;
+    width: min(100%, var(--history-width));
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding:
+        max(48px, env(safe-area-inset-top))
+        16px
+        calc(40px + env(safe-area-inset-bottom));
+    overflow: hidden;
+    background: transparent;
+    animation: history-enter 220ms ease both;
+}
+
+
+.history-app > * {
+    position: relative;
+    z-index: 1;
+}
+
+.history-header {
+    height: 57px;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) 38px;
+    align-items: center;
+}
+
+.history-header h1 {
+      min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 550;
+    line-height: 1;
+    letter-spacing: -1.1px;
+    margin-top: -13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-back-button,
+.history-brand-button {
+    position: relative;
+    width: 38px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+}
+
+
+.history-brand-button {
+    justify-self: end;
+}
+
+.history-brand-button::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 25px;
+    border: 2px solid var(--history-lime);
+    border-radius: 12px 12px 7px 7px;
+}
+
+.brand-wave {
+    position: absolute;
+    bottom: 12px;
+    width: 8px;
+    height: 4px;
+    border-bottom: 2px solid var(--history-lime);
+    border-radius: 50%;
+}
+
+.history-account-card {
+    position: relative;
+    min-height: 112px;
+    margin-top: 15px;
+    padding: 15px 49px 14px 20px;
+    overflow: hidden;
+    border: 1px solid rgba(189, 227, 154, 0.72);
+    border-radius: 32px 31px 36px 22px;
+    background:
+        radial-gradient(
+            ellipse 65% 88% at 78% 115%,
+            rgba(150, 75, 180, 0.49) 0%,
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 95% 70% at 82% 8%,
+            rgba(94, 129, 63, 0.34) 0%,
+            transparent 69%
+        ),
+        linear-gradient(135deg, rgba(27, 54, 60, 0.95), rgba(27, 49, 70, 0.95));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+/* Khung nút quay lại — giữ cố định để không phá layout */
+/* Xóa hoàn toàn icon cũ do CSS tạo */
+.history-back-button::before,
+.history-back-button::after,
+.history-back-button span::before,
+.history-back-button span::after {
+    content: none !important;
+    display: none !important;
+}
+
+
+
+/* Mũi tên ngang bên trái */
+.history-back-img {
+    width: 32px !important;
+    height: 32px !important;
+    display: block;
+
+    transform: none !important;
+    pointer-events: none;
+}
+/* Khung giữ ảnh */
+.history-back-icon-anchor {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    background: transparent !important;
+    border: 0 !important;
+    pointer-events: none;
+}
+
+/* Ảnh icon mới */
+.history-back-img {
+    --back-img-size: 26px;
+
+    display: block !important;
+    width: var(--back-img-size) !important;
+    height: var(--back-img-size) !important;
+
+    /* object-fit: contain;
+    max-width: none;
+    transform: none;
+    pointer-events: none; */
+}
+.history-account-card::after {
+    content: "";
+    position: absolute;
+    right: -35px;
+    bottom: -85px;
+    width: 175px;
+    height: 175px;
+    /* border: 18px solid rgba(229, 119, 242, 0.08); */
+    /* border-radius: 46% 54% 53% 47%; */
+    transform: rotate(25deg);
+    pointer-events: none;
+}
+
+.history-owner {
+  display: block;
+    overflow: hidden;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 550;
+    letter-spacing: -1.4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-account-line,
+.history-balance-line {
+    min-width: 0;
+    display: grid;
+    align-items: center;
+}
+
+.history-account-line {
+    grid-template-columns: 92px minmax(0, 1fr) 27px;
+    margin-top: 9px;
+}
+
+.history-balance-line {
+    grid-template-columns: 92px auto minmax(0, 1fr);
+    margin-top: 6px;
+}
+
+.history-account-line > span:first-child,
+.history-balance-line > span:first-child {
+    color: #f0f1f3;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.history-account-number {
+        justify-self: start;
+        
+    max-width: 115%;
+    padding: 2px 22px 4px;
+    margin-left: 10px;
+    margin-top: 0px;
+    overflow: hidden;
+    border-radius: 11px 14px 13px 11px;
+    background: linear-gradient(95deg, #caff9a 0%, #deff69 68%, #c6f55c 100%);
+    color: #10180d;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 16px;
+    font-weight: 550;
+    line-height: 1;
+    letter-spacing: clamp(2px, 1.1vw, 4px);
+    text-overflow: clip;
+    white-space: nowrap;
+    transform: rotate(-1.4deg);
+}
+
+.history-copy-button {
+    position: relative;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    margin-left: 23px;
+}
+
+.history-copy-button::before,
+.history-copy-button::after {
+    content: "";
+    position: absolute;
+    width: 11px;
+    height: 14px;
+    border: 1.5px solid #78913f;
+    border-radius: 3px;
+}
+
+.history-copy-button::before {
+    top: 8px;
+    left: 8px;
+}
+
+.history-copy-button::after {
+    top: 5px;
+    left: 11px;
+    background: rgba(220, 255, 105, 0.58);
+}
+
+.history-balance-line strong {
+        color: #fff;
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1;
+    margin-left: 16px;
+    letter-spacing: 1.5px;
+}
+
+.history-currency {
+   align-self: start;
+    margin: 1px 0 0 6px;
+    color: #fff;
+    margin-top: -3px;
+    margin-left: 230px;
+    font-size: 15px;
+    position: absolute;
+}
+
+.history-account-open {
+    position: absolute;
+    z-index: 3;
+    top: 17px;
+    right: 13px;
+    width: 37px;
+    height: 37px;
+}
+
+.history-account-open span {
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+}
+
+.history-section {
+    margin-top: 22px;
+}
+
+.history-section-heading {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-section-heading h2 {
+       min-width: 0;
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 550;
+    letter-spacing: -0.8px;
+    white-space: nowrap;
+}
+
+.history-search-more {
+       color: var(--history-lime);
+    font-size: 17px;
+    font-weight: 450;
+    white-space: nowrap;
+}
+
+.history-search-panel {
+    height: 42px;
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 8px;
+}
+
+.history-search-panel[hidden] {
+    display: none;
+}
+
+.history-search-panel label {
+    min-width: 0;
+}
+
+.history-search-panel input {
+    width: 100%;
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid rgba(202, 255, 65, 0.35);
+    border-radius: 14px;
+    outline: none;
+    background: rgba(20, 39, 56, 0.93);
+    color: #fff;
+    font-size: 15px;
+}
+
+.history-search-panel input::placeholder {
+    color: #8f98a7;
+}
+
+.history-search-panel > button {
+    color: var(--history-lime);
+    font-size: 15px;
+}
+
+.history-tabs {
+    height: 35px;
+    margin-top: 14px;
+    padding: 3px;
+    display: grid;
+    grid-template-columns: 105px minmax(0, 1fr) minmax(0, 1fr);
+    border-radius: 12px;
+    background: linear-gradient(
+        180deg,
+        rgba(31, 51, 66, 0.98) 0%,
+        rgba(22, 39, 55, 0.98) 100%
+    );
+}
+
+.history-tab {
+    position: relative;
+    min-width: 0;
+    border-radius: 10px;
+    color: #f2f3f5;
+    font-size: 16px;
+       font-weight: 600;
+    line-height: 1;
+}
+
+.history-tab.is-active {
+     background: linear-gradient(
+        96deg,
+        #c8fcb4 0%,
+        #bdf064 56%,
+        #e6fb7f 100%
+    ) !important;
+
+    color: #050706 !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+}
+
+.history-list {
+    margin-top: 22px;
+}
+
+.history-item {
+     width: 100%;
+    min-width: 0;
+    min-height: 70px;
+    padding: 10px 1px 3px;
+    display: block;
+    text-align: left;
+}
+
+.history-item[hidden] {
+    display: none;
+}
+
+.history-item-date {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--history-muted);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.05;
+}
+
+.history-item-main {
+    position: relative;
+    min-width: 0;
+    height: 35px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto 14px;
+    align-items: start;
+    column-gap: 8px;
+    border-bottom: 1px solid var(--history-line);
+}
+
+.history-item-main > strong {
+    min-width: 0;
+    overflow: hidden;
+    color: #fff;
+    font-size: 15.5px;
+       font-weight: 550;
+    line-height: 1.1;
+    letter-spacing: -0.15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-amount {
+    justify-self: end;
+    min-width: 0;
+    font-size: 15.5px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.history-amount small {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.history-amount.is-in {
+    color: var(--history-green);
+}
+
+.history-amount.is-out {
+    color: var(--history-red);
+}
+
+.history-item-chevron {
+    justify-self: end;
+    width: 9px;
+    height: 9px;
+    margin-top: 1px;
+    border-top: 1.7px solid var(--history-lime);
+    border-right: 1.7px solid var(--history-lime);
+    transform: rotate(45deg);
+}
+
+.history-empty {
+    margin: 36px 0 0;
+    color: var(--history-muted);
+    text-align: center;
+}
+
+.history-toast {
+    position: fixed;
+    z-index: 20;
+    left: 50%;
+    bottom: calc(22px + env(safe-area-inset-bottom));
+    width: max-content;
+    max-width: calc(100% - 32px);
+    padding: 10px 15px;
+    border: 1px solid rgba(207, 255, 63, 0.22);
+    border-radius: 14px;
+    background: rgba(17, 30, 47, 0.96);
+    color: #fff;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 12px);
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.history-toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+body.is-leaving .history-app {
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 150ms ease, transform 150ms ease;
+}
+
+@keyframes history-enter {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 359px) {
+    .history-app {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .history-header h1 {
+        font-size: 22px;
+    }
+
+    .history-account-card {
+        padding-left: 16px;
+        padding-right: 42px;
+    }
+
+    .history-account-line,
+    .history-balance-line {
+        grid-template-columns: 78px minmax(0, 1fr) 25px;
+    }
+
+    .history-account-number {
+        padding-left: 7px;
+        padding-right: 7px;
+        font-size: 14px;
+        letter-spacing: 1.5px;
+    }
+
+    .history-balance-line {
+        grid-template-columns: 78px auto minmax(0, 1fr);
+    }
+
+    .history-section-heading h2 {
+        font-size: 21px;
+    }
+
+    .history-search-more {
+        font-size: 15px;
+    }
+
+    .history-item-main {
+        grid-template-columns: minmax(0, 1fr) auto 12px;
+        column-gap: 5px;
+    }
+
+    .history-item-main > strong,
+    .history-amount {
+        font-size: 14px;
+    }
+
+    .history-amount small {
+        font-size: 10.5px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .history-app,
+    body.is-leaving .history-app,
+    .history-toast {
+        animation: none;
+        transition: none;
+    }
+}
+/* Ảnh nền toàn bộ trang lịch sử giao dịch */
+.history-background-img {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: min(100%, var(--history-width));
+    height: 100%;
+    min-height: 100dvh;
+    object-fit: cover;
+    object-position: top center;
+    transform: translateX(-50%);
+
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Nội dung nằm trên ảnh nền */
+.history-app {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100dvh;
+    background: transparent !important;
+}
+/* Không cho CSS tự tạo mũi tên */
+.history-back-button::before,
+.history-back-button::after,
+.history-back-icon-anchor::before,
+.history-back-icon-anchor::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Khung nút cố định */
+.history-back-button {
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+
+    display: grid !important;
+    place-items: center;
+
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+
+/* Khung chứa ảnh — không có border và không xoay */
+.history-back-icon-anchor {
+    width: 100% !important;
+    height: 100% !important;
+
+    display: grid !important;
+    place-items: center;
+
+    border: 0 !important;
+    background: transparent !important;
+    transform: none !important;
+    pointer-events: none;
+}
+
+/* Hiển thị nguyên ảnh history-back.png */
+.history-back-img {
+   --back-img-width: 101px;
+    --back-img-height: 130px;
+    margin-left: -35px;
+    margin-top: -50px;
+    display: block !important;
+    width: var(--back-img-width) !important;
+    height: var(--back-img-height) !important;
+    object-fit: contain;
+    transform: none !important;
+    pointer-events: none;
+}
+/* Xóa vòng tròn/icon cũ do CSS tạo */
+.history-account-open::before,
+.history-account-open::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Khung nút cố định — chỉnh ảnh không phá layout */
+.history-account-open {
+    --account-open-x: 0px;
+    --account-open-y: 0px;
+
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+
+    display: grid !important;
+    place-items: center;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    transform: translate(
+        var(--account-open-x),
+        var(--account-open-y)
+    ) !important;
+
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* Ảnh riêng — có thể chỉnh lớn nhỏ tự do */
+.history-account-open-img {
+ --account-open-img-width: 120px;
+    --account-open-img-height: 135px;
+    margin-left: -34px;
+    margin-top: -55px;
+    display: block !important;
+    width: var(--account-open-img-width) !important;
+    height: var(--account-open-img-height) !important;
+    max-width: none !important;
+    object-fit: contain;
+    transform: none !important;
+    pointer-events: none;
+    user-select: none;
+}
+/* Không cho CSS cũ tự vẽ biểu tượng sao chép */
+.history-copy-button::before,
+.history-copy-button::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Khung nút cố định, không ảnh hưởng bố cục */
+.history-copy-button {
+    --copy-button-x: 0px;
+    --copy-button-y: 0px;
+
+    width: 36px !important;
+    height: 36px !important;
+    flex: 0 0 36px;
+    padding: 0 !important;
+
+    display: grid !important;
+    place-items: center;
+
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    transform: translate(
+        var(--copy-button-x),
+        var(--copy-button-y)
+    ) !important;
+
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* Ảnh biểu tượng sao chép */
+.history-copy-img {
+  --copy-img-width: 90px;
+    --copy-img-height: 90px;
+        margin-left: -83px;
+        margin-top: -30px;
+    display: block !important;
+    width: var(--copy-img-width) !important;
+    height: var(--copy-img-height) !important;
+    max-width: none !important;
+    object-fit: contain;
+    transform: none !important;
+    pointer-events: none;
+    user-select: none;
+        transform: rotate(-1.4deg);
+}
+/* Màu số tiền vào */
+.history-amount.is-in {
+    color: #55d66b;
+}
+
+/* Chữ VND cùng màu nhưng tối hơn */
+.history-amount.is-in small {
+    color: inherit;
+    opacity: 0.55;
+    margin-left: 3px;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+/* Xóa biểu tượng cũ do CSS tạo */
+.history-brand-button::before,
+.history-brand-button::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Khung nút giữ cố định, không phá layout */
+.history-brand-button {
+    --brand-button-x: 0px;
+    --brand-button-y: 0px;
+
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 44px;
+    padding: 0 !important;
+
+    display: grid !important;
+    place-items: center;
+
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    transform: translate(
+        var(--brand-button-x),
+        var(--brand-button-y)
+    ) !important;
+
+    cursor: pointer;
+}
+
+/* Ảnh riêng, chỉnh lớn nhỏ không ảnh hưởng bố cục */
+.history-brand-img {
+--brand-img-width: 133px;
+    --brand-img-height: 190px;
+    margin-left: -34px;
+    margin-top: -77px;
+    display: block !important;
+    width: var(--brand-img-width) !important;
+    height: var(--brand-img-height) !important;
+    max-width: none !important;
+    object-fit: contain;
+    transform: none !important;
+    pointer-events: none;
+    user-select: none;
+}

@@ -1,0 +1,249 @@
+:root {
+    --detail-width: 430px;
+    --detail-white: #f7f8fa;
+    --detail-muted: #bbc0ca;
+    --detail-line: rgba(167, 179, 194, 0.36);
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+    background: #00091a;
+}
+
+body {
+    color: var(--detail-white);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+}
+
+.detail-background-img {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: min(100%, var(--detail-width));
+    height: 100%;
+    min-height: 100dvh;
+    object-fit: cover;
+    object-position: top center;
+    transform: translateX(-50%);
+    pointer-events: none;
+    user-select: none;
+}
+
+.detail-app {
+    position: relative;
+    z-index: 1;
+    width: min(100%, var(--detail-width));
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding:
+        max(52px, calc(env(safe-area-inset-top) + 18px))
+        15px
+        calc(32px + env(safe-area-inset-bottom));
+    animation: detail-enter 220ms ease both;
+}
+
+.detail-header {
+    height: 51px;
+    display: grid;
+    grid-template-columns: 27px minmax(0, 1fr) 32px;
+    align-items: center;
+    column-gap: 0;
+}
+
+.detail-header h1 {
+      min-width: 0;
+    margin: 0;
+    overflow: visible;
+    white-space: nowrap;
+    text-overflow: clip;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 600;
+    margin-left: 10px;
+    line-height: 1.3;
+    letter-spacing: 0;
+    transform: none;
+}
+
+.detail-icon-button {
+    position: relative;
+    width: 32px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.detail-icon-button:active {
+    opacity: 0.72;
+}
+
+.detail-back-button {
+    justify-self: start;
+}
+
+.detail-home-button {
+    justify-self: end;
+}
+
+.detail-back-img,
+.detail-home-img {
+    display: block;
+    max-width: none;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Chỉ chỉnh 2 biến này nếu muốn mũi tên to/nhỏ hơn. */
+.detail-back-img {
+      --detail-back-width: 85px;
+    margin-left: -33px;
+    margin-top: -36px;
+    --detail-back-height: 117px;
+    width: var(--detail-back-width);
+    height: var(--detail-back-height);
+}
+
+/* Chỉ chỉnh 2 biến này nếu muốn icon trang chủ to/nhỏ hơn. */
+.detail-home-img {
+   --detail-home-width: 110px;
+    --detail-home-height: 190px;
+    margin-top: -72px;
+    margin-left: -37px;
+    width: var(--detail-home-width);
+    height: var(--detail-home-height);
+}
+
+.detail-information {
+    margin-top: 10px;
+}
+
+.detail-row {
+    min-height: 36px;
+    padding: 0 0 1px;
+    display: grid;
+    grid-template-columns: minmax(0, 51%) minmax(0, 49%);
+    align-items: center;
+    border-bottom: 1px solid var(--detail-line);
+}
+
+.detail-label {
+    min-width: 0;
+    color: #9fa1a5;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.28px;
+}
+
+.detail-value {
+ min-width: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 550;
+    line-height: 1.25;
+    letter-spacing: 0.1px;
+    text-align: right;
+}
+
+.detail-amount {
+    white-space: nowrap;
+}
+
+.detail-amount small {
+    color: inherit;
+    opacity: 0.54;
+    font-size: 14px;
+    font-weight: 450;
+    letter-spacing: 0;
+}
+
+.detail-content-row {
+    min-height: 116px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: start;
+}
+
+.detail-content {
+    line-height: 1.34;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+body.is-leaving .detail-app {
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 150ms ease, transform 150ms ease;
+}
+
+@keyframes detail-enter {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 359px) {
+    .detail-app {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .detail-header {
+        grid-template-columns: 27px minmax(0, 1fr) 30px;
+    }
+
+    .detail-header h1 {
+        font-size: 19px;
+    }
+
+    .detail-label,
+    .detail-value {
+        font-size: 14.5px;
+    }
+
+    .detail-amount small {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .detail-app,
+    body.is-leaving .detail-app {
+        animation: none;
+        transition: none;
+    }
+}
