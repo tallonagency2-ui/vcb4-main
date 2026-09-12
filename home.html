@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#02081c">
+    <meta name="color-scheme" content="dark">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- iPhone/iPad -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+    >
+    <meta
+        name="apple-mobile-web-app-title"
+        content="VCB Digibank"
+    >
+
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./img/vcb-ios-icon-full-v8.png"
+>
+
+    <title>Trang chủ | VCB Digibank Demo</title>
+
+    <!-- Thêm phiên bản để iPhone không dùng CSS cũ -->
+    <link rel="stylesheet" href="./css/home.css?v=3">
+    <script src="./js/home.js?v=3" defer></script>
+</head>
+
+<body>
+
+    <main class="home-app" id="homeApp">
+
+        <!-- THẺ TÀI KHOẢN -->
+        <section
+            class="account-card"
+            aria-label="Thông tin tài khoản"
+        >
+
+            <!-- Ảnh banner chính -->
+            <div class="visual-stage">
+    <img
+        src="./img/home-banner2.png"
+        class="home-banner-img"
+        alt=""
+        draggable="false"
+    >
+
+    <img
+        src="./img/home-banner-extra.png"
+        class="home-banner-extra-img"
+        alt=""
+        draggable="false"
+    >
+</div>
+
+<div class="account-information">
+
+           
+
+            <!-- THÔNG TIN TÀI KHOẢN -->
+            <div class="account-information">
+
+                <!-- Khách hàng -->
+                <div class="profile-line">
+
+                    <span class="avatar-anchor">
+                        <img
+                            src="./img/home-avatar.png"
+                            class="ui-img home-avatar-img"
+                            alt="Ảnh đại diện"
+                            draggable="false"
+                        >
+                    </span>
+
+                    <div class="profile-copy">
+
+                        <button
+                            class="customer-button"
+                            type="button"
+                        >
+                            <strong class="customer-name">
+                                LAM NHAT TRUONG
+                            </strong>
+                        </button>
+
+                        <div class="customer-rank">
+
+                            <span class="shield-anchor">
+                                <img
+                                    src="./img/home-shield.png"
+                                    class="ui-img home-shield-img"
+                                    alt=""
+                                    draggable="false"
+                                >
+                            </span>
+
+                            <span class="shield-anchor1">
+                                Hạng Tiêu chuẩn
+                            </span>
+
+                            <span
+                                class="shield-anchor2"
+                                aria-hidden="true"
+                            >
+                                ›
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <!-- QR tài khoản -->
+                    <button
+                        class="qr-account-button"
+                        type="button"
+                        data-toast="Mã QR tài khoản đang ở chế độ demo."
+                        aria-label="Mở mã QR tài khoản"
+                    >
+                        <span class="qr-account-anchor">
+                            <img
+                                src="./img/home-qr-account.png"
+                                class="ui-img home-qr-account-img"
+                                alt=""
+                                draggable="false"
+                            >
+                        </span>
+                    </button>
+
+                </div>
+
+                <!-- Số tài khoản -->
+                <div class="account-detail-row">
+
+                    <span class="detail-label">
+                        Số tài khoản
+                    </span>
+
+                    <strong class="account-number">
+                        0181002284086
+                    </strong>
+
+                    <button
+                        class="detail-icon-button copy-account-button"
+                        id="copyAccountButton"
+                        type="button"
+                        aria-label="Sao chép số tài khoản"
+                    >
+                        <span class="detail-icon-anchor">
+                            <img
+                                src="./img/home-copy.png"
+                                class="ui-img home-copy-img"
+                                alt=""
+                                draggable="false"
+                            >
+                        </span>
+                    </button>
+
+                </div>
+
+                <!-- Số dư -->
+                <div class="account-detail-row balance-row">
+
+                    <span class="detail-label">
+                        Số dư
+                    </span>
+
+                    <strong
+                        class="balance-value"
+                        id="balanceValue"
+                        data-value="27.451.200 VND"
+                        data-amount="27.451.200"
+                    >
+                        *********
+                    </strong>
+
+                    <button
+                        class="detail-icon-button balance-toggle-button"
+                        id="balanceToggleButton"
+                        type="button"
+                        aria-label="Hiện số dư"
+                        aria-pressed="false"
+                    >
+                        <span class="detail-icon-anchor">
+                            <img
+                                src="./img/home-eye.png"
+                                class="ui-img home-eye-img"
+                                alt=""
+                                draggable="false"
+                            >
+                        </span>
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- PHÍM TẮT TÀI KHOẢN -->
+            <div class="account-shortcuts">
+
+                <!-- Lịch sử giao dịch -->
+                <button
+                    class="account-shortcut"
+                    type="button"
+                    onclick="window.location.href='./transaction-history.html'"
+                    aria-label="Mở lịch sử giao dịch"
+                >
+                    <span class="shortcut-icon-anchor">
+                        <img
+                            src="./img/home-history.png"
+                            class="ui-img home-history-img"
+                            alt=""
+                            draggable="false"
+                        >
+                    </span>
+
+                    <span class="shortcut-icon-anchor1">
+                        Lịch sử giao dịch
+                    </span>
+                </button>
+
+                <!-- Tài khoản và thẻ -->
+                <button
+                    class="account-shortcut"
+                    type="button"
+                    data-toast="Tài khoản và Thẻ đang ở chế độ demo."
+                    aria-label="Mở tài khoản và thẻ"
+                >
+                    <span class="shortcut-icon-anchor">
+                        <img
+                            src="./img/home-card.png"
+                            class="ui-img home-card-img"
+                            alt=""
+                            draggable="false"
+                        >
+                    </span>
+
+                    <span class="shortcut-icon-anchor2">
+                        Tài khoản &amp; Thẻ
+                    </span>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- CHUYỂN TIỀN TRONG NƯỚC -->
+        <button
+            class="favorite-item"
+            type="button"
+            data-toast="Mở Chuyển tiền trong nước."
+            aria-label="Chuyển tiền trong nước"
+        >
+            <span class="favorite-icon-anchor">
+                <img
+                    src="./img/home-transfer.png"
+                    class="ui-img favorite-transfer-img"
+                    alt=""
+                    draggable="false"
+                >
+            </span>
+
+            <span class="favorite-label">
+                Chuyển tiền<br>trong nước
+            </span>
+        </button>
+
+    </main>
+
+</body>
+</html>

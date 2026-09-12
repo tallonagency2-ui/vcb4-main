@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#062d34">
+    <meta name="color-scheme" content="dark">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="manifest" href="./manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="VCB Digibank">
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./img/vcb-ios-icon-full-v8.png"
+>
+
+    <title>Lịch sử giao dịch | VCB Digibank Demo</title>
+    <link rel="stylesheet" href="./css/transaction-history.css">
+    <script src="./js/transaction-history.js" defer></script>
+</head>
+
+<body>
+    <img
+        src="./img/transaction-history-bg.png"
+        class="history-background-img"
+        alt=""
+        draggable="false"
+    >
+    <main class="history-app" id="historyApp">
+        <header class="history-header">
+     <button
+    class="history-back-button"
+    id="historyBackButton"
+    type="button"
+    aria-label="Quay lại"
+>
+    <span class="history-back-icon-anchor">
+        <img
+            src="./img/history-back.png"
+            class="history-back-img"
+            alt=""
+            draggable="false"
+        >
+    </span>
+</button>
+
+            <h1>Tài khoản thanh toán</h1>
+
+           <button
+    class="history-brand-button"
+    id="historyHomeButton"
+    type="button"
+    aria-label="Về trang chủ"
+>
+    <img
+        src="./img/detail-home.png"
+        class="history-brand-img"
+        alt=""
+        draggable="false"
+    >
+</button>
+        </header>
+
+        <section class="history-account-card" aria-label="Thông tin tài khoản">
+            <button
+    class="history-account-open"
+    type="button"
+    aria-label="Xem chi tiết tài khoản"
+>
+    <img
+        src="./img/history-account-open.png"
+        class="history-account-open-img"
+        alt=""
+        draggable="false"
+    >
+</button>
+
+            <strong class="history-owner">CAO VAN BINH</strong>
+
+            <div class="history-account-line">
+                <span>Số tài khoản</span>
+
+                <strong class="history-account-number" id="historyAccountNumber">
+                    0561000593207
+                </strong>
+<button
+    class="history-copy-button"
+    id="historyCopyButton"
+    type="button"
+    aria-label="Sao chép số tài khoản"
+>
+    <img
+        src="./img/history-copy.png"
+        class="history-copy-img"
+        alt=""
+        draggable="false"
+    >
+</button>
+            </div>
+
+            <div class="history-balance-line">
+                <span>Số dư</span>
+                <strong>27.451.200</strong>
+                <span class="history-currency">VND</span>
+            </div>
+        </section>
+
+        <section class="history-section" aria-labelledby="historyTitle">
+            <div class="history-section-heading">
+                <h2 id="historyTitle">Lịch sử giao dịch</h2>
+
+                <button
+                    class="history-search-more"
+                    id="historySearchButton"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="historySearchPanel"
+                >
+                    Tìm kiếm thêm
+                </button>
+            </div>
+
+            <form class="history-search-panel" id="historySearchPanel" hidden>
+                <label>
+                    <span class="sr-only">Tìm giao dịch</span>
+                    <input
+                        id="historySearchInput"
+                        type="search"
+                        placeholder="Nhập nội dung hoặc số tiền"
+                        autocomplete="off"
+                    >
+                </label>
+                <button type="button" id="historyClearSearch">Xóa</button>
+            </form>
+
+            <div class="history-tabs" role="tablist" aria-label="Lọc giao dịch">
+                <button
+                    class="history-tab is-active"
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                    data-filter="all"
+                >
+                    Toàn bộ
+                </button>
+
+                <button
+                    class="history-tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    data-filter="in"
+                >
+                    Tiền vào
+                </button>
+
+                <button
+                    class="history-tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    data-filter="out"
+                >
+                    Tiền ra
+                </button>
+            </div>
+
+            <div class="history-list" id="historyList">
+                <button
+                    class="history-item"
+                    type="button"
+                    data-kind="out"
+                    data-search="30/07/2026 MBVCB.15347022926.12655 -1,500,000 VND"
+                    onclick="window.location.href='./transaction-detail.html'"
+                >
+                    <span class="history-item-date">30/07/2026</span>
+
+                    <span class="history-item-main">
+                        <strong>MBVCB.15347022926.12655...</strong>
+
+                        <span class="history-amount is-out">
+                            -1,500,000 <small>VND</small>
+                        </span>
+
+                        <span
+                            class="history-item-chevron"
+                            aria-hidden="true"
+                        ></span>
+                    </span>
+                </button>
+
+                <button
+                    class="history-item"
+                    type="button"
+                    data-kind="in"
+                    data-search="30/07/2026 PHAN TUAN TAI chuyen +100,000 VND"
+                    onclick="window.location.href='./transaction-detaill.html'"
+                >
+                    <span class="history-item-date">30/07/2026</span>
+                    <span class="history-item-main">
+                        <strong>PHAN TUAN TAI...</strong>
+                        <span class="history-amount is-in">+ 100,000 <small>VND</small></span>
+                        <span class="history-item-chevron" aria-hidden="true"></span>
+                    </span>
+                </button>
+
+                <button
+                    class="history-item"
+                    type="button"
+                    data-kind="in"
+                    data-search="30/07/2026 PHAN TUAN TAI chuyen +1,400,000 VND"
+                >
+                    <span class="history-item-date">30/07/2026</span>
+                    <span class="history-item-main">
+                        <strong>PHAN TUAN TAI chuyen...</strong>
+                        <span class="history-amount is-in">+ 1,400,000 <small>VND</small></span>
+                        <span class="history-item-chevron" aria-hidden="true"></span>
+                    </span>
+                </button>
+
+                <button
+                    class="history-item"
+                    type="button"
+                    data-kind="out"
+                    data-search="30/07/2026 MBVCB.15344456791.53968 -2,062,000 VND"
+                >
+                    <span class="history-item-date">30/07/2026</span>
+                    <span class="history-item-main">
+                        <strong>MBVCB.15344456791.53968...</strong>
+                        <span class="history-amount is-out">-2,062,000 <small>VND</small></span>
+                        <span class="history-item-chevron" aria-hidden="true"></span>
+                    </span>
+                </button>
+
+                <button
+                    class="history-item"
+                    type="button"
+                    data-kind="in"
+                    data-search="30/07/2026 Vietcombank:0051000548 +2,000,000 VND"
+                >
+                    <span class="history-item-date">30/07/2026</span>
+                    <span class="history-item-main">
+                        <strong>Vietcombank:0051000548...</strong>
+                        <span class="history-amount is-in">+ 2,000,000 <small>VND</small></span>
+                        <span class="history-item-chevron" aria-hidden="true"></span>
+                    </span>
+                </button>
+
+                <button
+                    class="history-item"
+                    type="button"
+                    data-kind="out"
+                    data-search="30/07/2026 UHHT..892408..20260727 -166,885 VND"
+                >
+                    <span class="history-item-date">30/07/2026</span>
+                    <span class="history-item-main">
+                        <strong>UHHT..892408..20260727....</strong>
+                        <span class="history-amount is-out">-166,885 <small>VND</small></span>
+                        <span class="history-item-chevron" aria-hidden="true"></span>
+                    </span>
+                </button>
+
+                <button
+                    class="history-item"
+                    type="button"
+                    data-kind="in"
+                    data-search="29/07/2026 PHAN TUAN TAI chuyen +1,100,000 VND"
+                >
+                    <span class="history-item-date">29/07/2026</span>
+                    <span class="history-item-main">
+                        <strong>PHAN TUAN TAI chuyen...</strong>
+                        <span class="history-amount is-in">+ 1,100,000 <small>VND</small></span>
+                        <span class="history-item-chevron" aria-hidden="true"></span>
+                    </span>
+                </button>
+            </div>
+
+            <p class="history-empty" id="historyEmpty" hidden>
+                Không tìm thấy giao dịch phù hợp.
+            </p>
+        </section>
+
+        <div class="history-toast" id="historyToast" role="status" aria-live="polite"></div>
+    </main>
+</body>
+</html>

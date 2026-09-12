@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#02071b">
+    <meta name="color-scheme" content="dark">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="manifest" href="./manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="VCB Digibank">
+       <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./img/vcb-ios-icon-v7.png"
+>
+
+    <title>Đăng nhập | VCB Digibank Demo</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <main class="app-shell">
+        <img
+            src="./img/vcb-login-bg3.png"
+            class="login-background"
+            alt=""
+            draggable="false"
+        >
+        <div class="background-shade" aria-hidden="true"></div>
+
+        <header class="login-header">
+            <img
+                src="./img/vcb-digibank-logo1.png"
+                class="vcb-logo-img"
+                alt="VCB Digibank"
+            >
+
+            <button class="language-button" type="button" aria-label="Đổi ngôn ngữ">
+                <img src="./img/flag-en.png" class="language-flag-img" alt="">
+                <span>ENG</span>
+            </button>
+        </header>
+
+        <section class="login-content" aria-labelledby="welcomeTitle">
+            <div class="customer-row">
+                <img
+                    src="./img/avatar.png"
+                    class="customer-avatar-img"
+                    alt="Ảnh đại diện"
+                >
+                <div>
+                    <p id="welcomeTitle" class="welcome-text">Xin chào,</p>
+                    <h1 class="customer-name">LAM NHAT TRUONG </h1>
+                </div>
+            </div>
+
+            <form class="login-form" id="loginForm" novalidate>
+               <div
+    class="password-field"
+    id="passwordField"
+    role="button"
+    tabindex="0"
+    aria-label="Mật khẩu mô phỏng, chạm màn hình 9 lần"
+    aria-valuemin="0"
+    aria-valuemax="9"
+    aria-valuenow="0"
+>
+    <!-- Icon ổ khóa -->
+    <img
+        src="./img/lock.png"
+        class="password-lock-img"
+        alt=""
+    >
+
+    <!-- Chữ Mật khẩu -->
+    <span
+        class="password-placeholder"
+        id="passwordPlaceholder"
+    >
+        Mật khẩu
+    </span>
+
+    <!-- 9 dấu chấm sẽ được JS thêm vào đây -->
+    <span
+        class="password-dots"
+        id="passwordDots"
+        aria-hidden="true"
+    ></span>
+
+    <!-- Nút xóa -->
+<button
+    class="password-clear"
+    id="passwordClear"
+    type="button"
+    aria-label="Xóa mật khẩu mô phỏng"
+    hidden
+>
+    <img
+        src="./img/close.png"
+        class="password-clear-img"
+        alt=""
+    >
+</button>
+
+    <!-- Icon con mắt -->
+    <button
+        class="password-toggle"
+        id="passwordToggle"
+        type="button"
+        aria-label="Mật khẩu mô phỏng"
+    >
+        <img
+            src="./img/eye.png"
+            class="password-eye-img"
+            alt=""
+        >
+    </button>
+</div>
+
+                <p class="sr-only" id="passwordHint">
+                    Màn hình mô phỏng. Không sử dụng mật khẩu ngân hàng thật.
+                </p>
+
+                <div class="login-action-row">
+                    <button class="login-button" id="loginButton" type="submit" disabled>
+                        Đăng nhập
+                    </button>
+
+                    <button
+                        class="face-id-button"
+                        id="faceIdButton"
+                        type="button"
+                        aria-label="Đăng nhập bằng nhận diện khuôn mặt"
+                    >
+                        <img src="./img/face-id.png" class="face-id-img" alt="">
+                    </button>
+                </div>
+            </form>
+
+            <button class="forgot-button" id="forgotButton" type="button">
+                Quên mật khẩu?
+            </button>
+        </section>
+  
+<div class="top-quick-tools">
+
+    <!-- QR nhận tiền -->
+    <button class="quick-tool quick-tool-money" type="button">
+        <span class="quick-tool-icon-box">
+            <img
+                src="./img/qr-money.png"
+                class="quick-tool-img quick-money-img"
+                alt=""
+            >
+        </span>
+
+        <span class="quick-tool-text quick-money-text">
+            QR nhận tiền
+        </span>
+    </button>
+  <span class="quick-tool-text quick-money-text1">
+           Quét QR
+        </span>
+
+    <!-- Thông báo -->
+    <button class="quick-tool quick-tool-notification" type="button">
+        <span class="quick-tool-icon-box">
+            <img
+                src="./img/bell.png"
+                class="quick-tool-img quick-notification-img"
+                alt=""
+            >
+
+            <span class="notification-badge"></span>
+        </span>
+
+        <span class="quick-tool-text quick-notification-text">
+            Thông báo
+        </span>
+    </button>
+
+</div>
+<div class="service-menu">
+
+    <!-- 1. ATM / Chi nhánh -->
+    <button class="service-item" type="button">
+        <span class="service-icon-box">
+            <img
+                src="./img/atm.png"
+                class="service-img service-atm-img"
+                alt=""
+            >
+        </span>
+
+        <span class="service-label">
+            ATM<br>Chi nhánh
+        </span>
+    </button>
+
+
+    <!-- 2. Ưu đãi -->
+    <button class="service-item" type="button">
+        <span class="service-icon-box">
+            <img
+                src="./img/offer.png"
+                class="service-img service-offer-img"
+                alt=""
+            >
+        </span>
+
+        <span class="service-label">
+            Ưu đãi
+        </span>
+    </button>
+
+
+    <!-- 3. Hướng dẫn sử dụng -->
+    <button class="service-item" type="button">
+        <span class="service-icon-box">
+            <img
+                src="./img/guide.png"
+                class="service-img service-guide-img"
+                alt=""
+            >
+        </span>
+
+        <span class="service-label">
+            Hướng dẫn<br>sử dụng
+        </span>
+    </button>
+
+
+    <!-- 4. Tạo OTP -->
+    <button class="service-item" type="button">
+        <span class="service-icon-box">
+            <img
+                src="./img/otp.png"
+                class="service-img service-otp-img"
+                alt=""
+            >
+        </span>
+
+        <span class="service-label">
+            Tạo OTP
+        </span>
+    </button>
+
+
+    <!-- 5. Hỗ trợ -->
+    <button class="service-item" type="button">
+        <span class="service-icon-box">
+            <img
+                src="./img/support1.png"
+                class="service-img service-support-img"
+                alt=""
+            >
+        </span>
+
+        <span class="service-label">
+            Hỗ trợ
+        </span>
+    </button>
+
+</div>
+        <div class="demo-toast" id="demoToast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="./js/login.js"></script>
+</body>
+</html>
